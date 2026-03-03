@@ -1,62 +1,30 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ANIMALS — Boris TXC</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIMALS | Dark Nature</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="bg-fog"></div>
 
-  <header class="site-header">
-    <div class="logo">ANIMALS</div>
-    <nav class="nav">
-      <a href="#about">Hakkımda</a>
-      <a href="#projects">Projeler</a>
-      <a href="#contact">İletişim</a>
-    </nav>
-  </header>
+    <div class="fog-wrapper">
+        <div class="fog-layer layer-1"></div>
+        <div class="fog-layer layer-2"></div>
+    </div>
 
-  <main class="container">
-    <section id="hero" class="hero">
-      <h1 class="hero-title">Boris TXC</h1>
-      <p class="hero-sub">Frontend Developer</p>
-      <a class="cta" href="#projects">Projelerime Bak</a>
-    </section>
+    <header>
+        <h1 class="main-title">ANIMALS</h1>
+    </header>
 
-    <section id="about" class="card">
-      <h2>Hakkımda</h2>
-      <p>Frontend geliştiricisiyim. Modern, performans odaklı ve görsel açıdan etkileyici arayüzler yapmayı severim.</p>
-    </section>
+    <main>
+        <section class="hero-text">
+            <p>Vahşi doğanın derinliklerine, toksik bir bakış.</p>
+            <div class="glow-line"></div>
+        </section>
+    </main>
 
-    <section id="projects" class="card">
-      <h2>Projeler</h2>
-      <div class="projects-grid">
-        <article class="project">
-          <h3>Portfolio</h3>
-          <p>Kişisel portfolyo ve blog. HTML, CSS, küçük JS animasyonları.</p>
-        </article>
-        <article class="project">
-          <h3>UI Kit</h3>
-          <p>Tekrar kullanılabilir bileşenler ve temalar.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="card">
-      <h2>İletişim</h2>
-      <p>Email: <a href="mailto:mailin@example.com">mailin@example.com</a></p>
-      <p><a href="https://github.com/BorisTXC" target="_blank" rel="noopener">GitHub Profilim</a></p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <small>© <span id="year"></span> Boris TXC — Built with toxic vibes</small>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
