@@ -1,15 +1,13 @@
-/* Temel Ayarlar */
 :root {
     --toxic: #39FF14;
     --dark: #050505;
-    --gray: #111111;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Standart fareyi gizle */
+    cursor: none !important; /* Standart fareyi her yerde zorla gizle */
 }
 
 body {
@@ -17,67 +15,76 @@ body {
     color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    line-height: 1.6;
+    background: radial-gradient(circle at center, #0a130a 0%, #050505 100%);
 }
 
-/* Custom Cursor */
+/* İmleç Düzelttim: Artık hep en üstte */
 .custom-cursor {
     width: 20px;
     height: 20px;
-    border: 1px solid var(--toxic);
+    border: 2px solid var(--toxic);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 999;
-    transition: transform 0.1s ease, background 0.3s ease;
+    z-index: 9999; 
+    transform: translate(-50%, -50%); /* Tam merkeze oturtur */
+    transition: transform 0.1s ease-out, background 0.3s ease;
 }
 
-/* Hero Section & Silhouette */
+/* Hero Düzenleme */
 .hero {
     height: 100vh;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 60px;
+    align-items: center;
+    padding-left: 10%;
     position: relative;
-    overflow: hidden;
 }
 
-.hero-bg-silhouette {
-    position: absolute;
-    right: -10%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60%;
-    height: 80%;
-    background: url('https://images.unsplash.com/photo-1555181126-cf46a03827c0?q=80&w=2070&auto=format&fit=crop') no-repeat center;
-    background-size: contain;
-    opacity: 0.15;
-    filter: grayscale(100%) brightness(0.5);
-    z-index: 1;
-    animation: float 10s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-52%) translateX(-20px); }
+.hero-container {
+    z-index: 10;
 }
 
 .main-title {
     font-family: 'Syncopate', sans-serif;
-    font-size: clamp(3rem, 15vw, 10rem);
+    font-size: clamp(3rem, 12vw, 8rem);
     color: var(--toxic);
-    position: relative;
-    z-index: 10;
-    text-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
 }
 
-/* Scroll Reveal Section */
+.hero-line {
+    width: 60px;
+    height: 4px;
+    background: var(--toxic);
+    margin: 20px 0;
+    box-shadow: 0 0 15px var(--toxic);
+}
+
+.hero-subtext {
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Yeni Arka Plan Silüeti (Kurt) */
+.hero-bg-silhouette {
+    position: absolute;
+    right: 5%;
+    width: 50%;
+    height: 70%;
+    background: url('https://images.unsplash.com/photo-1555181126-cf46a03827c0?q=80&w=2070&auto=format&fit=crop') no-repeat center;
+    background-size: contain;
+    opacity: 0.1;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+/* Reveal Bölümü */
 .reveal-section {
-    padding: 150px 60px;
+    padding: 100px 10%;
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-out;
+    transform: translateY(30px);
+    transition: 1s ease-out;
 }
 
 .reveal-section.visible {
@@ -87,106 +94,62 @@ body {
 
 .section-tag {
     color: var(--toxic);
-    font-size: 0.9rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
 
 .reveal-text {
-    font-size: 2rem;
-    max-width: 800px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 300;
+    max-width: 900px;
 }
 
-/* Gallery & Glitch Cards */
-.gallery {
-    padding: 100px 60px;
-}
-
+/* Galeri Kartları */
+.gallery { padding: 100px 10%; }
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    margin-top: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .card {
-    background: var(--gray);
-    height: 450px;
+    height: 400px;
+    background: #0a0a0a;
     position: relative;
-    border: 1px solid rgba(57, 255, 20, 0.05);
     overflow: hidden;
-    transition: 0.5s;
-}
-
-.card:hover {
-    border-color: var(--toxic);
-    box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+    border: 1px solid rgba(57, 255, 20, 0.1);
 }
 
 .card-image {
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0.5;
-    transition: 0.5s;
+    opacity: 0.4;
+    transition: 0.6s;
 }
 
-.card:hover .card-image {
-    opacity: 0.8;
-    transform: scale(1.05);
-}
+.card:hover .card-image { opacity: 0.7; transform: scale(1.1); }
 
-/* Placeholder Resimler (Kendi resimlerinle değiştirebilirsin) */
 .img-1 { background-image: url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=1964&auto=format&fit=crop'); }
 .img-2 { background-image: url('https://images.unsplash.com/photo-1534149043227-1463992a3528?q=80&w=1974&auto=format&fit=crop'); }
 .img-3 { background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2059&auto=format&fit=crop'); }
 
-.card-info {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-}
+.card-info { position: absolute; bottom: 20px; left: 20px; }
 
-/* Glitch Efekti */
-.glitch-text {
-    font-family: 'Syncopate', sans-serif;
-    color: var(--toxic);
-    position: relative;
-}
+/* Glitch */
+.glitch-text { font-family: 'Syncopate', sans-serif; color: var(--toxic); font-size: 1.2rem; }
 
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
+/* Sis */
+.fog-wrapper { position: fixed; top: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.layer-1 { 
+    width: 200%; height: 100%; 
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
+    filter: blur(80px);
+    animation: fogMove 40s linear infinite;
 }
-
-.card:hover .glitch-text::after {
-    opacity: 1;
-    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
-    color: white;
-    z-index: -1;
-}
-
-@keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-3px, 3px); }
-    40% { transform: translate(-3px, -3px); }
-    60% { transform: translate(3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    100% { transform: translate(0); }
-}
-
-/* Sis & Detaylar (Eskilerle aynı) */
-.fog-wrapper { position: fixed; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
-.fog-layer { position: absolute; width: 200%; height: 100%; opacity: 0.15; filter: blur(60px); }
-.layer-1 { background: radial-gradient(circle, var(--toxic) 0%, transparent 70%); animation: fogMove 60s linear infinite; }
 
 @keyframes fogMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-footer { padding: 60px; text-align: center; color: #444; font-size: 0.8rem; }
+footer { padding: 50px; text-align: center; color: #333; font-size: 0.7rem; border-top: 1px solid #111; }
