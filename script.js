@@ -1,37 +1,38 @@
-// Fare İmleci Takibi
 const cursor = document.querySelector('.custom-cursor');
 
+// İmleci hareket ettir
 document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
+    // requestAnimationFrame kullanarak daha akıcı hale getirdik
+    requestAnimationFrame(() => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 });
 
-// Tıklanabilir öğelere gelince imleç büyüsün
-const interactiveElements = document.querySelectorAll('.card, .main-title');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'scale(3)';
+// Sayfaya girince göster, çıkınca gizle
+document.addEventListener('mouseenter', () => cursor.style.opacity = "1");
+document.addEventListener('mouseleave', () => cursor.style.opacity = "0");
+
+// İnteraktif öğelerde imleci büyüt
+const links = document.querySelectorAll('.card, .main-title');
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
         cursor.style.background = 'rgba(57, 255, 20, 0.1)';
     });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'scale(1)';
+    link.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
         cursor.style.background = 'transparent';
     });
 });
 
-// Scroll Reveal (Kaydırdıkça Belirme)
-const observerOptions = {
-    threshold: 0.2
-};
-
+// Kaydırdıkça belirme efekti
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal-section').forEach(section => {
-    observer.observe(section);
-});
+document.querySelectorAll('.reveal-section').forEach(el => observer.observe(el));
