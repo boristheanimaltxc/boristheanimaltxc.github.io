@@ -1,96 +1,192 @@
-/* Genel Ayarlar */
+/* Temel Ayarlar */
+:root {
+    --toxic: #39FF14;
+    --dark: #050505;
+    --gray: #111111;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none; /* Standart fareyi gizle */
 }
 
 body {
-    background-color: #050505; /* Çok koyu gri/siyah */
-    color: #ffffff;
+    background-color: var(--dark);
+    color: white;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    height: 100vh;
+    line-height: 1.6;
 }
 
-/* Toksik Yeşil Başlık */
-.main-title {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    font-family: 'Syncopate', sans-serif;
-    font-size: clamp(2rem, 8vw, 5rem);
-    color: #39FF14; /* Toxic Green */
-    text-shadow: 0 0 20px rgba(57, 255, 20, 0.5),
-                 0 0 40px rgba(57, 255, 20, 0.2);
-    z-index: 10;
-    letter-spacing: -2px;
-}
-
-/* Sis Animasyonu */
-.fog-wrapper {
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--toxic);
+    border-radius: 50%;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
     pointer-events: none;
+    z-index: 999;
+    transition: transform 0.1s ease, background 0.3s ease;
 }
 
-.fog-layer {
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), 
-                radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
-    opacity: 0.4;
-}
-
-.layer-1 {
-    animation: fogMove 60s linear infinite;
-    filter: blur(50px);
-}
-
-.layer-2 {
-    animation: fogMove 30s linear infinite reverse;
-    filter: blur(80px);
-    opacity: 0.2;
-}
-
-@keyframes fogMove {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* Işıklandırma ve İçerik */
-.hero-text {
+/* Hero Section & Silhouette */
+.hero {
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 60px;
     position: relative;
-    z-index: 5;
+    overflow: hidden;
 }
 
-.hero-text p {
-    font-size: 1.2rem;
+.hero-bg-silhouette {
+    position: absolute;
+    right: -10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60%;
+    height: 80%;
+    background: url('https://images.unsplash.com/photo-1555181126-cf46a03827c0?q=80&w=2070&auto=format&fit=crop') no-repeat center;
+    background-size: contain;
+    opacity: 0.15;
+    filter: grayscale(100%) brightness(0.5);
+    z-index: 1;
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-52%) translateX(-20px); }
+}
+
+.main-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: clamp(3rem, 15vw, 10rem);
+    color: var(--toxic);
+    position: relative;
+    z-index: 10;
+    text-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+}
+
+/* Scroll Reveal Section */
+.reveal-section {
+    padding: 150px 60px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
+}
+
+.reveal-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-tag {
+    color: var(--toxic);
+    font-size: 0.9rem;
     letter-spacing: 5px;
-    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.reveal-text {
+    font-size: 2rem;
+    max-width: 800px;
+    font-weight: 300;
+}
+
+/* Gallery & Glitch Cards */
+.gallery {
+    padding: 100px 60px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.card {
+    background: var(--gray);
+    height: 450px;
+    position: relative;
+    border: 1px solid rgba(57, 255, 20, 0.05);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.card:hover {
+    border-color: var(--toxic);
+    box-shadow: 0 0 40px rgba(57, 255, 20, 0.1);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.card:hover .card-image {
     opacity: 0.8;
+    transform: scale(1.05);
 }
 
-.glow-line {
-    width: 100px;
-    height: 2px;
-    background: #39FF14;
-    margin-top: 20px;
-    box-shadow: 0 0 15px #39FF14;
-    transition: width 0.5s ease;
+/* Placeholder Resimler (Kendi resimlerinle değiştirebilirsin) */
+.img-1 { background-image: url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=1964&auto=format&fit=crop'); }
+.img-2 { background-image: url('https://images.unsplash.com/photo-1534149043227-1463992a3528?q=80&w=1974&auto=format&fit=crop'); }
+.img-3 { background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2059&auto=format&fit=crop'); }
+
+.card-info {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
 }
 
-.hero-text:hover .glow-line {
-    width: 300px;
+/* Glitch Efekti */
+.glitch-text {
+    font-family: 'Syncopate', sans-serif;
+    color: var(--toxic);
+    position: relative;
 }
+
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.card:hover .glitch-text::after {
+    opacity: 1;
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+    color: white;
+    z-index: -1;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 3px); }
+    40% { transform: translate(-3px, -3px); }
+    60% { transform: translate(3px, 3px); }
+    80% { transform: translate(3px, -3px); }
+    100% { transform: translate(0); }
+}
+
+/* Sis & Detaylar (Eskilerle aynı) */
+.fog-wrapper { position: fixed; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.fog-layer { position: absolute; width: 200%; height: 100%; opacity: 0.15; filter: blur(60px); }
+.layer-1 { background: radial-gradient(circle, var(--toxic) 0%, transparent 70%); animation: fogMove 60s linear infinite; }
+
+@keyframes fogMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+footer { padding: 60px; text-align: center; color: #444; font-size: 0.8rem; }
