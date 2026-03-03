@@ -6,14 +6,41 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #111;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       color: white;
       text-align: center;
-      padding-top: 100px;
+      background: linear-gradient(135deg, #0f0 0%, #033 100%);
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Sis efekti */
+    .fog {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,255,0,0.15) 0%, rgba(0,0,0,0.8) 80%);
+      animation: moveFog 20s linear infinite;
+      transform: translate(-25%, -25%);
+    }
+
+    @keyframes moveFog {
+      0% { transform: translate(-25%, -25%) scale(1); }
+      50% { transform: translate(-20%, -30%) scale(1.1); }
+      100% { transform: translate(-25%, -25%) scale(1); }
+    }
+
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
+      text-shadow: 0 0 15px #0f0;
     }
     p {
       font-size: 20px;
@@ -26,6 +53,7 @@
   </style>
 </head>
 <body>
+  <div class="fog"></div>
   <h1>Boris TXC</h1>
   <p>Frontend Developer</p>
   <p>Email: mailin@example.com</p>
