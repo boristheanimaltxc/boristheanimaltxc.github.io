@@ -3,61 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANIMALS</title>
-    <link rel="icon" type="image/png" href="favicon.png"> 
+    <title>HUMANIMALS | Database</title>
+    <link rel="icon" type="image/png" href="img/favicon.png"> 
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Noto+Sans+JP:wght@900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="custom-cursor"></div>
 
     <div class="fog-wrapper">
-        <div class="fog-layer layer-1"></div>
+        <div class="fog-layer"></div>
     </div>
 
     <header class="hero">
-        <div class="hero-container">
-            <h1 class="main-title">ANIMALS</h1>
-            <div class="hero-line"></div>
-            <p class="hero-subtext">VAHŞİ DOĞANIN DERİNLİKLERİNE, TOKSİK BİR BAKIŞ.</p>
+        <div class="hero-content">
+            <h1 class="main-title">HUMANIMALS</h1>
+            <p class="tagline">EVRİMİN KARANLIK YÜZÜ</p>
         </div>
-        <div class="hero-bg-silhouette"></div>
+        <div class="kanji-bg">ヒューマニマルズ</div>
     </header>
 
-    <section class="reveal-section">
-        <div class="content-box">
-            <h2 class="section-tag">/ 01. HİKAYE</h2>
-            <p class="reveal-text">Sessizliğin içinde bir güç, karanlığın kalbinde bir yaşam. Doğanın ham ve tehlikeli güzelliği.</p>
+    <section class="section-container">
+        <div class="glass-card reveal">
+            <h2 class="card-title">/ LOG: 001 - DÜNYA DÜZENİ</h2>
+            <p class="card-text">
+                26.Yüzyıl... Şehirler neon ışıkları altında çürürken, laboratuvarlarda yeni bir tür doğdu. 
+                İnsan zekası ve vahşi doğanın saf öfkesi tek bir bedende: <span class="neon-text">Humanimals.</span>
+            </p>
         </div>
     </section>
 
-    <section class="gallery">
-        <h2 class="section-tag">/ 02. TÜRLER</h2>
-        <div class="card-grid">
-            <div class="card">
-                <div class="card-image img-1"></div>
-                <div class="card-info">
-                    <h3 class="glitch-text" data-text="PREDATOR">PREDATOR</h3>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image img-2"></div>
-                <div class="card-info">
-                    <h3 class="glitch-text" data-text="VENOM">VENOM</h3>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image img-3"></div>
-                <div class="card-info">
-                    <h3 class="glitch-text" data-text="ALPHA">ALPHA</h3>
-                </div>
-            </div>
-        </div>
+    <section class="section-container">
+        <h2 class="section-header">/ ARŞİV: ANA KARAKTERLER</h2>
+        <div class="character-grid" id="char-grid"></div>
     </section>
 
     <footer>
-        <p>&copy; 2024 ANIMALS - Dark Project</p>
+        <p>SYSTEM STATUS: <span class="blink">CONNECTED</span> | DATABASE V1.0</p>
     </footer>
 
     <script src="script.js"></script>
