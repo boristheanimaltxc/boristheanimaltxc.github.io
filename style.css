@@ -4,7 +4,6 @@
     --dark-bg: #050505;
     --glass: rgba(255, 255, 255, 0.03);
     --border: rgba(57, 255, 20, 0.2);
-    /* Neon Kırmızı Renk Tanımı */
     --neon-red: rgb(179, 1, 1); 
 }
 
@@ -15,13 +14,16 @@
     cursor: none !important; 
 }
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--dark-bg);
     color: white;
     font-family: 'Share Tech Mono', monospace;
-    /* Genel font boyutu biraz büyütüldü */
     font-size: 1.1rem; 
-    overflow-x: hidden;
     line-height: 1.6;
     background: radial-gradient(circle at center, #0a130a 0%, #050505 100%);
     background-attachment: fixed;
@@ -41,7 +43,7 @@ body {
     transition: transform 0.1s ease-out;
 }
 
-/* --- GİRİŞ BÖLÜMÜ --- */
+/* --- GİRİŞ BÖLÜMÜ (HERO) --- */
 .hero {
     height: 100vh;
     display: flex;
@@ -51,6 +53,7 @@ body {
     position: relative;
     text-align: center;
     padding: 20px;
+    overflow: hidden;
 }
 
 .main-title {
@@ -60,6 +63,7 @@ body {
     text-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
     z-index: 10;
     letter-spacing: -2px;
+    white-space: nowrap;
 }
 
 .kanji-bg {
@@ -70,11 +74,12 @@ body {
     z-index: 1;
     pointer-events: none;
     user-select: none;
+    /* Masaüstünde orijinal dikey yayılım için serbest bırakıldı */
 }
 
 .tagline {
     letter-spacing: 5px;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     opacity: 0.8;
     margin-top: 10px;
     z-index: 10;
@@ -89,7 +94,7 @@ body {
     z-index: 5;
 }
 
-/* --- CAM KART VE DÜNYA DÜZENİ BAŞLIĞI --- */
+/* --- CAM KART --- */
 .glass-card {
     background: var(--glass);
     backdrop-filter: blur(15px);
@@ -101,10 +106,9 @@ body {
 }
 
 .card-title {
-    color: var(--toxic); /* Başlık yeşil yapıldı */
+    color: var(--toxic);
     font-size: 1.3rem;
     letter-spacing: 4px;
-    /* Boşluk artırılarak içerikten ayrıldı */
     margin-bottom: 40px; 
 }
 
@@ -118,12 +122,11 @@ body {
     text-shadow: 0 0 10px var(--toxic);
 }
 
-/* --- KARAKTER KARTLARI (GRID) VE ARŞİV BAŞLIĞI --- */
+/* --- KARAKTER KARTLARI --- */
 .section-header {
-    color: var(--toxic); /* Başlık yeşil yapıldı */
+    color: var(--toxic);
     letter-spacing: 3px;
     font-size: 1.1rem;
-    /* Boşluk artırılarak kartlardan ayrıldı */
     margin-bottom: 60px; 
 }
 
@@ -131,6 +134,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
+    padding-bottom: 50px;
 }
 
 .character-card {
@@ -138,12 +142,14 @@ body {
     border: 1px solid var(--border);
     border-radius: 20px;
     overflow: hidden;
-    transition: all 0.5s ease;
+    transition: all 0.7s ease;
+    position: relative;
 }
 
 .character-card:hover {
     transform: translateY(-10px);
-    border-color: var(--toxic);
+    border-color: var(--aura-color); 
+    box-shadow: 0 0 30px var(--aura-color), 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .char-img {
@@ -156,10 +162,15 @@ body {
     content-visibility: auto; 
 }
 
+.character-card:hover .char-img {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px var(--aura-color));
+}
+
 .char-info {
     padding: 25px;
     background: rgba(0, 0, 0, 0.9);
-    min-height: 180px; /* Eşit boy için min-height artırıldı */
+    min-height: 180px;
 }
 
 .char-info h3 {
@@ -169,10 +180,9 @@ body {
     font-size: 1.3rem;
 }
 
-/* "TÜR:" Yazısı için Parlak Neon Kırmızı Ayarı */
 .label {
     color: var(--neon-red);
-    text-shadow: 0 0 10px var(--neon-red); /* Parlaklık efekti */
+    text-shadow: 0 0 10px var(--neon-red); 
     font-weight: bold;
     margin-right: 5px;
 }
@@ -201,3 +211,41 @@ footer { padding: 100px; text-align: center; color: #444; font-size: 0.7rem; }
 .img-1 { background-image: url('img/Genç Dahi.png'); }
 .img-2 { background-image: url('img/Siaal.png'); }
 .img-3 { background-image: url('img/Vernuu.png'); }
+
+/* --- MOBİL ÖZEL AYARLAR --- */
+@media screen and (max-width: 600px) {
+    .main-title {
+        font-size: 9vw !important; 
+        letter-spacing: -1px;
+    }
+
+    .kanji-bg {
+        /* Yazıyı dikeyde yaymak için genişliği kıstık */
+        width: 100%; 
+        /* Yazının bir kısmının yukarıda bir kısmının aşağıda kalması için dikey boyutu artırdık */
+        font-size: 20vw !important; 
+        color: rgba(57, 255, 20, 0.06) !important;
+        display: block !important;
+        /* Masaüstündeki gibi serbest dikey yayılım */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* Kelime aralarını veya satırları dikeyde açmak için */
+        line-height: 2.2;
+        word-break: break-all; /* Yazı uzunsa dikeyde kırılmasını sağlar */
+    }
+
+    .tagline {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        margin-top: 15px;
+    }
+
+    .section-container {
+        padding: 0 15px;
+        margin: 60px auto;
+    }
+
+    .custom-cursor { display: none; }
+    * { cursor: auto !important; }
+}
