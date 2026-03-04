@@ -1,24 +1,33 @@
+/* --- TEMEL AYARLAR VE RENKLER --- */
 :root {
     --toxic: #39FF14;
-    --dark: #050505;
+    --dark-bg: #050505;
+    --glass: rgba(255, 255, 255, 0.03);
+    --border: rgba(57, 255, 20, 0.2);
+    /* Neon Kırmızı Renk Tanımı */
+    --neon-red: rgb(179, 1, 1); 
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none !important; /* Standart fareyi her yerde zorla gizle */
+    cursor: none !important; 
 }
 
 body {
-    background-color: var(--dark);
+    background-color: var(--dark-bg);
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Share Tech Mono', monospace;
+    /* Genel font boyutu biraz büyütüldü */
+    font-size: 1.1rem; 
     overflow-x: hidden;
+    line-height: 1.6;
     background: radial-gradient(circle at center, #0a130a 0%, #050505 100%);
+    background-attachment: fixed;
 }
 
-/* İmleç Düzelttim: Artık hep en üstte */
+/* --- ÖZEL FARE İMLECİ --- */
 .custom-cursor {
     width: 20px;
     height: 20px;
@@ -26,130 +35,169 @@ body {
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9999; 
-    transform: translate(-50%, -50%); /* Tam merkeze oturtur */
-    transition: transform 0.1s ease-out, background 0.3s ease;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px var(--toxic);
+    transition: transform 0.1s ease-out;
 }
 
-/* Hero Düzenleme */
+/* --- GİRİŞ BÖLÜMÜ --- */
 .hero {
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding-left: 10%;
     position: relative;
-}
-
-.hero-container {
-    z-index: 10;
+    text-align: center;
+    padding: 20px;
 }
 
 .main-title {
     font-family: 'Syncopate', sans-serif;
     font-size: clamp(3rem, 12vw, 8rem);
     color: var(--toxic);
-    line-height: 1;
-    text-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+    text-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
+    z-index: 10;
+    letter-spacing: -2px;
 }
 
-.hero-line {
-    width: 60px;
-    height: 4px;
-    background: var(--toxic);
-    margin: 20px 0;
-    box-shadow: 0 0 15px var(--toxic);
-}
-
-.hero-subtext {
-    letter-spacing: 4px;
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-
-/* Yeni Arka Plan Silüeti (Kurt) */
-.hero-bg-silhouette {
+.kanji-bg {
     position: absolute;
-    right: 5%;
-    width: 50%;
-    height: 70%;
-    background: url('https://images.unsplash.com/photo-1555181126-cf46a03827c0?q=80&w=2070&auto=format&fit=crop') no-repeat center;
-    background-size: contain;
-    opacity: 0.1;
-    filter: grayscale(100%);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(10rem, 30vw, 21rem);
+    color: rgba(57, 255, 20, 0.03);
+    z-index: 1;
     pointer-events: none;
+    user-select: none;
 }
 
-/* Reveal Bölümü */
-.reveal-section {
-    padding: 100px 10%;
+.tagline {
+    letter-spacing: 5px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 10px;
+    z-index: 10;
+}
+
+/* --- BÖLÜM KONTEYNERLARI --- */
+.section-container {
+    max-width: 1100px;
+    margin: 150px auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 5;
+}
+
+/* --- CAM KART VE DÜNYA DÜZENİ BAŞLIĞI --- */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 60px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.card-title {
+    color: var(--toxic); /* Başlık yeşil yapıldı */
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    /* Boşluk artırılarak içerikten ayrıldı */
+    margin-bottom: 40px; 
+}
+
+.card-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.neon-text {
+    color: var(--toxic);
+    text-shadow: 0 0 10px var(--toxic);
+}
+
+/* --- KARAKTER KARTLARI (GRID) VE ARŞİV BAŞLIĞI --- */
+.section-header {
+    color: var(--toxic); /* Başlık yeşil yapıldı */
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    /* Boşluk artırılarak kartlardan ayrıldı */
+    margin-bottom: 60px; 
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.character-card {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--toxic);
+}
+
+.char-img {
+    height: 400px;
+    background-color: #0a0a0a;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    transition: 0.5s;
+    content-visibility: auto; 
+}
+
+.char-info {
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.9);
+    min-height: 180px; /* Eşit boy için min-height artırıldı */
+}
+
+.char-info h3 {
+    font-family: 'Syncopate', sans-serif;
+    color: var(--toxic);
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+/* "TÜR:" Yazısı için Parlak Neon Kırmızı Ayarı */
+.label {
+    color: var(--neon-red);
+    text-shadow: 0 0 10px var(--neon-red); /* Parlaklık efekti */
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* --- SCROLL REVEAL --- */
+.reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: 1s ease-out;
+    transform: translateY(50px);
+    transition: all 1s ease-out;
 }
 
-.reveal-section.visible {
+.reveal.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.section-tag {
-    color: var(--toxic);
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-}
+footer { padding: 100px; text-align: center; color: #444; font-size: 0.7rem; }
+.blink { color: var(--toxic); animation: simple-blink 1.5s infinite; }
+@keyframes simple-blink { 50% { opacity: 0.2; } }
 
-.reveal-text {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 300;
-    max-width: 900px;
-}
-
-/* Galeri Kartları */
-.gallery { padding: 100px 10%; }
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.card {
-    height: 400px;
-    background: #0a0a0a;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(57, 255, 20, 0.1);
-}
-
-.card-image {
-    width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.4;
-    transition: 0.6s;
-}
-
-.card:hover .card-image { opacity: 0.7; transform: scale(1.1); }
-
-.img-1 { background-image: url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?q=80&w=1964&auto=format&fit=crop'); }
-.img-2 { background-image: url('https://images.unsplash.com/photo-1534149043227-1463992a3528?q=80&w=1974&auto=format&fit=crop'); }
-.img-3 { background-image: url('https://images.unsplash.com/photo-1546182990-dffeafbe841d?q=80&w=2059&auto=format&fit=crop'); }
-
-.card-info { position: absolute; bottom: 20px; left: 20px; }
-
-/* Glitch */
-.glitch-text { font-family: 'Syncopate', sans-serif; color: var(--toxic); font-size: 1.2rem; }
-
-/* Sis */
-.fog-wrapper { position: fixed; top: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-.layer-1 { 
-    width: 200%; height: 100%; 
-    background: radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
-    filter: blur(80px);
-    animation: fogMove 40s linear infinite;
-}
-
+/* SİS VE RESİMLER */
+.fog-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.fog-layer { width: 200%; height: 100%; background: radial-gradient(circle, rgba(57, 255, 20, 0.03) 0%, transparent 70%); filter: blur(100px); animation: fogMove 30s linear infinite; }
 @keyframes fogMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-footer { padding: 50px; text-align: center; color: #333; font-size: 0.7rem; border-top: 1px solid #111; }
+.img-1 { background-image: url('img/Genç Dahi.png'); }
+.img-2 { background-image: url('img/Siaal.png'); }
+.img-3 { background-image: url('img/Vernuu.png'); }
