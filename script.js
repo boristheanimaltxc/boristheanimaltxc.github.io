@@ -2,21 +2,21 @@
 const characters = [
     { 
         name: "GENÇ DAHİ", 
-        // "Tür:" yazısı "TÜR:" olarak güncellendi
         type: "Deniz Anası, Mürekkep Balığı, Alaycı Kuş", 
-        imgClass: "img-1" 
+        imgClass: "img-1",
+        color: "#00f2ff" // Turkuaz aura
     },
     { 
         name: "SIAAL", 
-        // "Tür:" yazısı "TÜR:" olarak güncellendi
         type: "Baykuş", 
-        imgClass: "img-2" 
+        imgClass: "img-2",
+        color: "#fdfd96" // Altın/Sarı aura
     },
     { 
         name: "VERNUU", 
-        // "Tür:" yazısı "TÜR:" olarak güncellendi
         type: "Kuzgun", 
-        imgClass: "img-3" 
+        imgClass: "img-3",
+        color: "#ff3e3e" // Parlak Neon Kırmızı aura
     }
 ];
 
@@ -24,9 +24,9 @@ const characters = [
 const charGrid = document.getElementById('char-grid');
 
 characters.forEach(char => {
-    // TÜR: etiketi HTML içinde span.label olarak duruyor
+    // style="--aura-color: ${char.color}" satırı CSS'e karakterin rengini taşır
     const cardHTML = `
-        <div class="character-card reveal">
+        <div class="character-card reveal" style="--aura-color: ${char.color}">
             <div class="char-img ${char.imgClass}"></div>
             <div class="char-info">
                 <h3>${char.name}</h3>
@@ -48,9 +48,7 @@ document.addEventListener('mousemove', (e) => {
     });
 });
 
-// Etkileşim efektlerini başlat (Yeni eklenen karakterleri de kapsar)
 function initInteractions() {
-    // Fare bir karta veya başlığa gelince imleci büyütme efekti
     const interactiveElements = document.querySelectorAll('.character-card, .glass-card, .main-title');
     interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
@@ -65,7 +63,7 @@ function initInteractions() {
 }
 
 // --- 2. KAYDIRDIKÇA BELİRME (SCROLL REVEAL) EFEKTİ ---
-const observerOptions = { threshold: 0.1 }; // %10 göründüğünde tetiklenir
+const observerOptions = { threshold: 0.1 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -74,7 +72,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Tüm "reveal" sınıfına sahip öğeleri izle
 document.querySelectorAll('.reveal').forEach(el => {
     observer.observe(el);
 });
